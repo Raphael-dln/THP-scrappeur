@@ -25,7 +25,7 @@ end
 def mini_hash
   array_final = []
   big_hash.each { |key_value| array_final << {key_value[0] => key_value[1]}}
-  puts array_final
+  return array_final
 end
 
 def perform
