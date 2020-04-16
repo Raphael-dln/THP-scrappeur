@@ -17,24 +17,22 @@ def get_townhall_urls
 return urls
 end
 
-def get_townhall_email
-  tableau = []
+def get_townhall_informations
+  final_array = []
   get_townhall_urls.each do |x|
   doc =  Nokogiri::HTML(open(x)) 
   townhall_email = doc.xpath('//section[2]/div/table/tbody/tr[4]/td[2]').text
   city_name = doc.xpath('//a[@class="lientxt4"]').text.capitalize
   hash_town = {city_name => townhall_email}
-
-  tableau << hash_town
+  final_array << hash_town
   end
-  puts tableau
+  puts final_array
 end
 
 
 def perform
   get_townhall_urls
-  get_townhall_email
- # get_townhall_name
+  get_townhall_informations
 end
 
 perform
