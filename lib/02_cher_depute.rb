@@ -3,17 +3,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 
-def deputy_name
-  url = Nokogiri::HTML(open("http://www2.assemblee-nationale.fr/deputes/liste/alphabetique"))
-  deputy_list = url.xpath('//*[@id="deputes-list"]//a').collect(&:text)
-  deputy_array = []
-  deputy_list.map do |d|
-    deputy_name = d.gsub("M.", "")
-    deputy_name2 = deputy_name.gsub("Mme", "")
-    deputy_array << deputy_name2
-  end
-  puts deputy_array
-end
 
 def deputy_url
   url = Nokogiri::HTML(open("http://www2.assemblee-nationale.fr/deputes/liste/alphabetique"))
@@ -40,13 +29,14 @@ def deputy_informations
     deputy_hash = {"first_name" => deputy_first_name, "last_name" => deputy_last_name, "email" => deputy_email}
     array << deputy_hash
   end
-  puts array
+  puts array #comme ça le résultat s'affiche
+  return array #pour les tests rspec
 end
 
 def perform
- # deputy_name
   deputy_url
   deputy_informations
 end
 
 perform
+

@@ -22,13 +22,13 @@ def get_townhall_informations
   get_townhall_urls.each do |x|
   doc =  Nokogiri::HTML(open(x)) 
   townhall_email = doc.xpath('//section[2]/div/table/tbody/tr[4]/td[2]').text
-  city_name = doc.xpath('//a[@class="lientxt4"]').text.capitalize
+  city_name = doc.xpath('//a[@class="lientxt4"]').text.capitalize.gsub("val d'oise", '')
   hash_town = {city_name => townhall_email}
   final_array << hash_town
   end
   puts final_array
+  return final_array
 end
-
 
 def perform
   get_townhall_urls

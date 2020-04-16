@@ -1,8 +1,5 @@
 require_relative '../lib/00_dark_trader'
 
-
-
-# vérifier que le scrappeur récupère au moins X cryptomonnaies
 describe "the program get data" do
   it "should return crypto's symbol and crypto is not nil" do
     expect(crypto_name).not_to be_nil
@@ -15,19 +12,10 @@ describe "the program get data" do
 end
 
 describe "it should be an array of hashes" do
-  it "should be an array of hashes " do
-    expect(mini_hash).not_to be_nil
+  it "verify that the array contains the symbol for bitcoin" do
+    mini_hash.each do |hash|
+        break if expect(hash).to include("BTC")
+        break if expect(hash).to include("ETH")  
+    end
   end
 end
-
-# vérifier la présence de 2-3 cryptomonnaies phares (avec un cours non nil et non nul)
-=begin
-describe "the most importants cryptocurrencies are present" do
-  it "should return a value (not nil nor nul) for Bitcoin" do
-    expect("BTC").not_to be_nil
-  end
-  it "should return a value (not nil nor nul) for Ethereum" do
-    expect("ETH").not_to be_nil
-  end
-end
-=end
